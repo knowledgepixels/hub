@@ -39,7 +39,7 @@
 <li><p id="latest">loading</p></li>
 </ul>
 <script>
-getLatestNp("latest");
+getLatestNp((lastLine) => { document.getElementById("latest").innerHTML = lastLine; });
 </script>
 </columm>
 
