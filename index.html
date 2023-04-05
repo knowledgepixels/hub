@@ -32,13 +32,15 @@
 </column>
 
 <column>
-<h2>Latest Nanopublications</h2>
+<h2>Latest Nanopublication</h2>
 <ul>
 <li><p id="latest">loading</p></li>
 </ul>
 <script type="module">
-import { getLatestNp } from './nanopub-utils.js';
-getLatestNp((lastLine) => { document.getElementById("latest").innerHTML = lastLine; });
+import { getLatestNp, getShortCode } from './nanopub-utils.js';
+getLatestNp((lastNpUri) => {
+  document.getElementById("latest").innerHTML = "<a href=\"" + lastNpUri + "\" target=\"_blank\">" + getShortCode(lastNpUri) + "</a>";
+});
 </script>
 </columm>
 
