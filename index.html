@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nanopublication Hub</title>
 <link rel="stylesheet" href="https://knowledgepixels.com/assets/css/kp.css?v=1.1">
-<script type="module" src="https://unpkg.com/@nanopub/display?module"></script>
-
 <link rel="apple-touch-icon" sizes="180x180" href="https://knowledgepixels.com/assets/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://knowledgepixels.com/assets/icon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://knowledgepixels.com/assets/icon/favicon-16x16.png">
@@ -38,7 +36,8 @@
 <ul>
 <li><p id="latest">loading</p></li>
 </ul>
-<script>
+<script type="module">
+import { getLatestNp } from './nanopub-utils.js';
 getLatestNp((lastLine) => { document.getElementById("latest").innerHTML = lastLine; });
 </script>
 </columm>
