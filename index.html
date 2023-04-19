@@ -12,6 +12,8 @@
 <link rel="mask-icon" href="https://knowledgepixels.com/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#db0b5b">
 <meta name="theme-color" content="#ffffff">
+<script type="module" src="https://unpkg.com/@nanopub/utils?module"></script>
+
 </head>
 
 <body>
@@ -36,12 +38,17 @@
 <ul>
 <li><p id="latest">loading</p></li>
 </ul>
-<script type="module">
-import { getLatestNp, getShortCode } from './nanopub-utils.js';
-getLatestNp((lastNpUri) => {
-  document.getElementById("latest").innerHTML = "<a href=\"" + lastNpUri + "\" target=\"_blank\">" + getShortCode(lastNpUri) + "</a>";
-});
-</script>
+
+
+  <script type="text/javascript">
+  alert("foo")
+    import {getUpdateStatus, Nanopub} from '@nanopub/utils'
+    const status = getUpdateStatus('npUpdate', 'https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
+    console.log(status)
+    const np = await Nanopub.fetch('https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
+    alert('Parsed nanopub:')
+  </script>
+  
 </columm>
 
 </container>
