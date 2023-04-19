@@ -43,14 +43,14 @@
 </container>
 </section>
 
-</body>
+  <script type="module">
+    import {getUpdateStatus, Nanopub} from '@nanopub/utils'
+    const status = getUpdateStatus('npUpdate', 'https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
+    console.log(status)
+    const np = await Nanopub.fetch('https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
+    console.log('Parsed nanopub:', np)
+  </script>
 
-<script type="module">
-  import {getUpdateStatus, Nanopub} from '@nanopub/utils'
-  const status = getUpdateStatus('npUpdate', 'https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
-  console.log(status)
-  const np = await Nanopub.fetch('https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
-  console.log('Parsed nanopub:', np)
-</script>
+</body>
 
 </html>
