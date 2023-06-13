@@ -12,7 +12,7 @@
 <link rel="mask-icon" href="https://knowledgepixels.com/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#db0b5b">
 <meta name="theme-color" content="#ffffff">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@nanopub/utils/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@nanopub/utils@1.0.6/dist/index.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
 </section>
 
   <script type="module">
-    import {getUpdateStatus, Nanopub} from '@nanopub/utils'
+    const {getUpdateStatus, Nanopub} = NP;
     const status = getUpdateStatus('npUpdate', 'https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
     console.log(status)
     const np = await Nanopub.fetch('https://purl.org/np/RAHtkscyyyJDLvWRuINckQrn5rbHzQKvwakNVC3fmRzGU')
