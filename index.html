@@ -12,6 +12,7 @@
 <link rel="mask-icon" href="https://knowledgepixels.com/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#db0b5b">
 <meta name="theme-color" content="#ffffff">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="./index.min.js"></script>
 <!--<script src="https://cdn.jsdelivr.net/npm/@nanopub/utils@1.0.7/dist/index.min.js"></script>-->
 </head>
@@ -34,7 +35,7 @@
 </column>
 
 <column>
-<h2>Latest Nanopublication</h2>
+<h2>Checking for Updates...</h2>
 <ul>
 <li><p id="latest">loading</p></li>
 </ul>
@@ -44,67 +45,14 @@
 </container>
 </section>
 
-  <script type="module">
-    const {getUpdateStatus, Nanopub} = NanopubUtils;
-    
-const grlcNpApiUrls = [
-  'https://grlc.nps.petapico.org/api/local/local/',
-  'https://grlc.services.np.trustyuri.net/api/local/local/'
-]
-
-const getUpdateStatus2 = function(npUri) {
-  // document.getElementById(elementId)!.innerHTML = '<em>Checking for updates...</em>';
-  const shuffledApiUrls = [...grlcNpApiUrls].sort(() => 0.5 - Math.random())
-  console.log("a");
-  return getUpdateStatus2X(npUri, shuffledApiUrls)
-}
-
-const getUpdateStatus2X = function(npUri, apiUrls) {
-  if (apiUrls.length == 0) {
-    // const h: HTMLElement = document.getElementById(elementId) as HTMLInputElement;
-    // h.innerHTML = '<em>An error has occurred while checking for updates.</en>';
-    return {error: 'error'}
-  }
-  const apiUrl = apiUrls.shift()
-  console.log(apiUrl);
-  const requestUrl = apiUrl + '/get_latest_version?np=' + npUri
-  const r = new XMLHttpRequest()
-  r.open('GET', requestUrl, true)
-  r.setRequestHeader('Accept', 'application/json')
-  r.responseType = 'json'
-  r.onload = function () {
-    if (r.status == 200) {
-      console.log("200");
-      const bindings = r.response['results']['bindings']
-      console.log(r);
-      if (bindings.length == 1 && bindings[0]['latest']['value'] === npUri) {
-        return 'This is the latest version.';
-      } else if (bindings.length == 0) {
-        return 'This nanopublication has been <strong>retracted</strong>.';
-      } else {
-        const h = 'This nanopublication has a <strong>newer version</strong>: ';
-        for (const b of bindings) {
-          const l = b['latest']['value'];
-          return h + ' <code><a href="' + l + '">' + l + '</a></code>';
-        }
-      }
-    } else {
-      console.log("error: " + r.status);
-      return getUpdateStatus2X(npUri, apiUrls)
-    }
-  }
-  r.onerror = function () {
-    return getUpdateStatus2X(npUri, apiUrls)
-  }
-  return r.send()
-}
-    
-    
-    const status = await getUpdateStatus('http://purl.org/np/RAMLyf1nJrc_YZqIZMHJEm-gC6_duo2-W9LZIvTk734ks')
-    console.log(status)
-    const np = await Nanopub.fetch('http://purl.org/np/RAMLyf1nJrc_YZqIZMHJEm-gC6_duo2-W9LZIvTk734ks')
-    console.log('Parsed nanopub:', np)
-  </script>
+<script type="module">
+  const {getUpdateStatus, Nanopub} = NanopubUtils;
+  const status = await getUpdateStatus('http://purl.org/np/RAMLyf1nJrc_YZqIZMHJEm-gC6_duo2-W9LZIvTk734ks')
+  console.log(status)
+  $("#latest").html(status.html)
+  const np = await Nanopub.fetch('http://purl.org/np/RAMLyf1nJrc_YZqIZMHJEm-gC6_duo2-W9LZIvTk734ks')
+  console.log('Parsed nanopub:', np)
+</script>
 
 </body>
 
